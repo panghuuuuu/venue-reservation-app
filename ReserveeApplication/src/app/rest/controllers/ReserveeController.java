@@ -12,18 +12,16 @@ import app.components.ReserveeComponent;
 import app.entities.Reservee;
 
 @Path("/reservee")
-public class ReserveeController 
-{
+public class ReserveeController {
 	@Autowired
 	private ReserveeComponent rComp;
-	
+
 	@POST
 	@Path("/createaccount")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public String createAccount(Reservee re)
-	{
+	public String createAccount(Reservee re) {
 		return rComp.create(re);
 	}
-	
+
 }

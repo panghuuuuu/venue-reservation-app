@@ -5,26 +5,31 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 @Entity
 public class Reservee {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)  // autoincrement
+	@GeneratedValue(strategy = GenerationType.IDENTITY) // autoincrement
 	@Column
 	private Long reserveeID;
-	
-	@Column 
-	private Long schoolID;
-	
+
+	@NotNull(message="SchoolID cannot be null.")
 	@Column
-	@Pattern(regexp="^(cat|dog)$")
+	private Long schoolID;
+
+	@Column
+	@NotNull(message="Type cannot be null.")
+	@Pattern(regexp = "^(student|faculty)$")
 	private String type;
-	
-	@Column 
+
+	@NotNull(message="First Name cannot be null.")
+	@Column
 	private String firstName;
-	
+
+	@NotNull(message="Last Name cannot be null.")
 	@Column
 	private String lastName;
 

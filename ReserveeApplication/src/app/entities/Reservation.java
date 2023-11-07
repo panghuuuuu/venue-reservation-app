@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Reservation {
@@ -16,18 +17,23 @@ public class Reservation {
 	@Column
 	private Long reservationID;
 
+	@NotNull(message="VenueID cannot be null.")
 	@Column
 	private Long venueID;
 	
+	@NotNull(message="ReserveeID cannot be null.")
 	@Column
 	private Long reserveeID;
 	
+	@NotNull(message="Date cannot be null.")
 	@Column
 	private LocalDate date;
 	
+	@NotNull(message="Time cannot be null.")
     @Column
     private LocalTime time;
     
+	@NotNull(message="Status cannot be null.")
     @Column
     private String status;
     
@@ -85,4 +91,5 @@ public class Reservation {
 		return "Reservation [reservationID=" + reservationID + ", venueID=" + venueID + ", reserveeID=" + reserveeID
 				+ ", date=" + date + ", time=" + time + ", status=" + status + "]";
 	}
+
 }
