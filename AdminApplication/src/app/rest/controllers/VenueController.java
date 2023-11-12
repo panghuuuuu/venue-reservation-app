@@ -23,7 +23,6 @@ public class VenueController {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Venue createVenue(Venue venue) {
-		
 		return vComp.createVenue(venue);
 	}
 	
@@ -34,5 +33,4 @@ public class VenueController {
 	public Venue viewVenue(Long venueID) {
 		return vComp.viewVenue(venueID);
 	}
-	
 }

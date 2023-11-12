@@ -15,8 +15,8 @@ public class ReservationComponent {
 	@Autowired
 	private ReservationRepository reservationRepo;
 
-	public String view(Long id) {
-		return reservationRepo.findByreservationID(id).toString();
+	public Reservation view(Long id) {
+		return reservationRepo.findByreservationID(id);
 	}
 
 	public String create(Reservation re) {

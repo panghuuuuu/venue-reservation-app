@@ -1,5 +1,7 @@
 package app.rest.controllers;
 
+import java.io.IOException;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
@@ -19,7 +21,7 @@ public class RequestController {
 	@POST
 	@Path("/reservation")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String requestReservation(ReservationRequestDTO resreq) {
+	public String requestReservation(ReservationRequestDTO resreq) throws IOException {
 		return rc.requestReservation(resreq.getReserveeID(),
 									 resreq.getVenueID(),
 									 resreq.getVenueName(),

@@ -25,7 +25,7 @@ public class ReservationController {
 	@Path("/view")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public String view(@FormParam("id") Long id) {
+	public Reservation view(@FormParam("id") Long id) {
 		return rComp.view(id);
 	}
 
