@@ -1,9 +1,24 @@
 package app.components;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.stereotype.Component;
+
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 @Component
 public class RequestComponent {
+	
+	Retrofit retrofit;
+	
+	@PostConstruct
+	public void init() {
+		retrofit = new Retrofit.Builder()
+				.baseUrl("https://localhost:9999")
+				.addConverterFactory(GsonConverterFactory.create())
+				.build();
+	}
 
 	public String requestReservation(Long reserveeID, 
 								     Long venueID, 
