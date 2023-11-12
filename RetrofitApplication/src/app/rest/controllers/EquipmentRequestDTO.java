@@ -1,4 +1,4 @@
-package app.entities;
+package app.rest.controllers;
 
 import javax.persistence.Entity;
 
