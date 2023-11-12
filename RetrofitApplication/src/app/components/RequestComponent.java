@@ -19,6 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RequestComponent {
 	
 	Retrofit retrofit;
+	RequestIF service;
 	
 	@PostConstruct
 	public void init() {
@@ -26,6 +27,8 @@ public class RequestComponent {
 				.baseUrl("https://localhost:9999")
 				.addConverterFactory(GsonConverterFactory.create())
 				.build();
+		
+		service = retrofit.create(RequestIF.class);
 	}
 
 	public String requestReservation(Long reserveeID, 
@@ -35,8 +38,6 @@ public class RequestComponent {
 								     String roomNo,
 								     String date, 
 								     String time) throws IOException {
-		
-		RequestIF service = retrofit.create(RequestIF.class);
 		
 		Call<Reservee> verifyReservee = service.verifyReservee(reserveeID);
 		Response<Reservee> reserveeVerificationReply = verifyReservee.execute();
@@ -60,6 +61,7 @@ public class RequestComponent {
 		
 		// TODO: add method to create the reservation
 		
+		// TODO: edit the string to follow the project proposal
 		return "The reservation is successfully requested.";
 	}
 
@@ -70,11 +72,21 @@ public class RequestComponent {
 							       Long projectors,
 							       Long projectorScreens, 
 							       Long microphones, 
-							       Long speakers) {
+							       Long speakers) throws IOException {
 		
-		// TODO
+		Call<Reservation> verifyReservation = service.verifyReservation(reservationID);
+		Response<Reservation> reservationVerificactionReply = verifyReservation.execute();
 		
-		return null;
+		Reservation reservation = reservationVerificactionReply.body();
+		
+		if(reservation == null) {
+			return "This reservationID " + reservationID + " does not exist. Please make a reservation first.";
+		}
+		
+		// TODO: add a method to create the equipment request
+		
+		// TODO: edit the string to follow the project proposal
+		return "The equipment is successfully requested.";
 	}
 
 	public String setStatus(Long reservationID, String status) {

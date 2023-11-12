@@ -34,7 +34,7 @@ public class RequestController {
 	@POST
 	@Path("/equipment")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String requestEquipment(EquipmentRequestDTO equipreq) {
+	public String requestEquipment(EquipmentRequestDTO equipreq) throws IOException {
 		return rc.requestEquipment(equipreq.getReservationID(),
 								   equipreq.getTables(),
 								   equipreq.getChairs(),
