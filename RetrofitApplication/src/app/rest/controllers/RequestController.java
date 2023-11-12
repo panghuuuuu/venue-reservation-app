@@ -49,7 +49,7 @@ public class RequestController {
 	@Path("/setstatus")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	public String setStatus(@FormParam("reservationID") Long reservationID,
-							@FormParam("status") String status) {
+							@FormParam("status") String status) throws IOException {
 		return rc.setStatus(reservationID, status);
 	}
 }

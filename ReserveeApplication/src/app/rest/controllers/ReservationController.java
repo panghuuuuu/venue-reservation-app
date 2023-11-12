@@ -54,5 +54,13 @@ public class ReservationController {
 	public String cancel(@FormParam("reservationID") Long reservationID, @FormParam("reserveeID") Long reserveeID) {
 		return rComp.cancel(reservationID, reserveeID);
 	}
+	
+	@POST
+	@Path("/setstatus")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	public String setStatus(@FormParam("reservationID") Long reservationID,
+					   @FormParam("status") String status) {
+		return rComp.setStatus(reservationID, status);
+	}
 
 }

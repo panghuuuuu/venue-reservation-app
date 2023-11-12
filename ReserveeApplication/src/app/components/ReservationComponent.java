@@ -48,4 +48,12 @@ public class ReservationComponent {
 		}
 		return "Canceled Reservation";
 	}
+
+	public String setStatus(Long reservationID, String status) {
+		Reservation reservation = reservationRepo.findByreservationID(reservationID);
+		
+		reservation.setStatus(status);
+		
+		return "The reservation " + reservationID + " is currently " + status +".";
+	}
 }

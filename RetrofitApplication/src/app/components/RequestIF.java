@@ -27,8 +27,12 @@ public interface RequestIF {
 	@POST("http://localhost:9998/reservation/verify")
 	Call<Reservation> verifyReservation(@Field("reservationID") Long reservationID);
 
-	@POST("https://localhost:9998/venue/view")
+	@POST("http://localhost:9998/venue/view")
 	Call<Venue> verifySchedule(@Field("venueID") Long venueID);
+	
+	@POST("http://localhost:9998/reservation/setstatus")
+	Call<ResponseBody> changeStatus(@Field("reservationID") Long reservationID,
+							        @Field("status") String status);
 	
 	@GET("http://localhost:9997/reservee/approvedreservations")
 	Call<ResponseBody> getApprovedReservations();

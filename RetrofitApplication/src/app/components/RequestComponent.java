@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import app.entities.Reservation;
 import app.entities.Reservee;
 import app.entities.Venue;
+import okhttp3.ResponseBody;
 import retrofit2.Response;
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -89,11 +90,23 @@ public class RequestComponent {
 		return "The equipment is successfully requested.";
 	}
 
-	public String setStatus(Long reservationID, String status) {
+	public String setStatus(Long reservationID, String status) throws IOException {
 		
-		// TODO
+		Call<Reservation> verifyReservation = service.verifyReservation(reservationID);
+		Response<Reservation> reservationVerificactionReply = verifyReservation.execute();
 		
-		return null;
+		Reservation reservation = reservationVerificactionReply.body();
+		
+		if(reservation == null) {
+			return "This reservationID " + reservationID + " does not exist. Please make a reservation first.";
+		}
+		
+		Call<ResponseBody> changeStatus = service.changeStatus(reservationID, status);
+		Response<ResponseBody> statusChangeReply = changeStatus.execute();
+		
+		String message = statusChangeReply.body().toString();
+		
+		return message;
 	}
 
 }
