@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="config"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry combineaccessrules="false" kind="src" path="/SpringBootDependencies"/>
+	<classpathentry kind="lib" path="C:/Users/BRESCIA/Documents/BS CS (SY 2023-2024)/.1ST SEM/CSCI 180.05/Final Project/venue-reservation-app/converter-gson-2.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/BRESCIA/Documents/BS CS (SY 2023-2024)/.1ST SEM/CSCI 180.05/Final Project/venue-reservation-app/gson-2.6.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

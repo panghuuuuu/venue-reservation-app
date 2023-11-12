@@ -15,8 +15,8 @@ public class ReservationComponent {
 	@Autowired
 	private ReservationRepository reservationRepo;
 
-	public String view(Long id) {
-		return reservationRepo.findByreservationID(id).toString();
+	public Reservation view(Long id) {
+		return reservationRepo.findByreservationID(id);
 	}
 
 	public String create(Reservation re) {
@@ -47,5 +47,13 @@ public class ReservationComponent {
 			reservationRepo.save(cancelReservation);
 		}
 		return "Canceled Reservation";
+	}
+
+	public String setStatus(Long reservationID, String status) {
+		Reservation reservation = reservationRepo.findByreservationID(reservationID);
+		
+		reservation.setStatus(status);
+		
+		return "The reservation " + reservationID + " is currently " + status +".";
 	}
 }

@@ -17,4 +17,8 @@ public class ReserveeComponent {
 		String message = "Account has been successfully created.";
 		return message;
 	}
+
+	public Reservee verifyReservee(Long reserveeID) {
+		return reserveeRepo.findByreserveeID(reserveeID);
+	}
 }

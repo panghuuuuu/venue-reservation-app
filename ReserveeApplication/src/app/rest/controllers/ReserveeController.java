@@ -1,6 +1,7 @@
 package app.rest.controllers;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -22,6 +23,13 @@ public class ReserveeController {
 	@Produces(MediaType.APPLICATION_JSON)
 	public String createAccount(Reservee re) {
 		return rComp.create(re);
+	}
+	
+	@POST
+	@Path("/verify")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	public Reservee verify(@FormParam("reserveeID") Long reserveeID) {
+		return rComp.verifyReservee(reserveeID);
 	}
 
 }
