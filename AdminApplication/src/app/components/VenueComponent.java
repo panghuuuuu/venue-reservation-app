@@ -1,6 +1,8 @@
 package app.components;
 
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,19 +16,13 @@ public class VenueComponent {
 	private VenueRepository vRepo;
 	
 	public Venue createVenue(Venue venue) {
-		
-		Venue v = new Venue();
-		v.setVenueName(venue.getVenueName());
-		v.setBuilding(venue.getBuilding());
-		v.setRoomNo(venue.getRoomNo());
-		v.setOfficeAssigned(venue.getOfficeAssigned());
-		v.setSchedule(venue.getSchedule());
-				
-		return vRepo.save(v);
+	    return vRepo.save(venue);
 	}
 	
+	@Transactional
 	public Venue viewVenue(Long venueID) {
-		return vRepo.findByvenueID(venueID);
+		Venue venue = vRepo.findByVenueID(venueID);
+	    venue.getSchedule().size();
+		return venue;
 	}
-
 }

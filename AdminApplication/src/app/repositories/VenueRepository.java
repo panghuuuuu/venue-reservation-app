@@ -7,5 +7,5 @@ import app.entites.Venue;
 
 @Repository
 public interface VenueRepository extends JpaRepository<Venue, Long> {
-	public Venue findByvenueID(Long venueID);
+	public Venue findByVenueID(Long venueID);
 }

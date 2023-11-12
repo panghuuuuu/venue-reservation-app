@@ -1,10 +1,12 @@
 package app.entites;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -77,9 +79,13 @@ public class Venue {
 	public void setOfficeAssigned(String officeAssigned) {
 		this.officeAssigned = officeAssigned;
 	}
-
+	
+	@ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
 	public List<String> getSchedule() {
-		return schedule;
+	    if (schedule == null) {
+	        schedule = new ArrayList<>();
+	    }
+	    return schedule;
 	}
 
 	public void setSchedule(List<String> schedule) {
