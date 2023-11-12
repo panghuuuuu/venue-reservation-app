@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 @Entity
 public class ReservationRequestDTO {
 	
-	private Long id;
 	private Long reserveeID;
 	private Long venueID;
 	private String venueName;
@@ -14,12 +13,6 @@ public class ReservationRequestDTO {
 	private String date;
 	private String time;
 	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 	public Long getReserveeID() {
 		return reserveeID;
 	}

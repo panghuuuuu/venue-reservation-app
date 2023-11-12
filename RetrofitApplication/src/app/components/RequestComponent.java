@@ -12,7 +12,7 @@ public class RequestComponent {
 								     String roomNo,
 								     String date, 
 								     String time) {
-		// TODO Auto-generated method stub
+		// TODO method to request a reservation
 		return null;
 	}
 
@@ -24,7 +24,12 @@ public class RequestComponent {
 							       Long projectorScreens, 
 							       Long microphones, 
 							       Long speakers) {
-		// TODO Auto-generated method stub
+		// TODO method to request equipment
+		return null;
+	}
+
+	public String setStatus(Long reservationID, String status) {
+		// TODO method to set the status for a reservation
 		return null;
 	}
 

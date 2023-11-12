@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 @Entity
 public class EquipmentRequestDTO {
 	
-	private Long id;
 	private Long reservationID;
 	private Long tables;
 	private Long chairs;
@@ -14,12 +13,7 @@ public class EquipmentRequestDTO {
 	private Long projectorScreens;
 	private Long microphones;
 	private Long speakers;
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
+	
 	public Long getReservationID() {
 		return reservationID;
 	}

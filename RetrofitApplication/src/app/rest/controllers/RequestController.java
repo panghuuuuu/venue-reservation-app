@@ -1,6 +1,7 @@
 package app.rest.controllers;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
@@ -40,5 +41,13 @@ public class RequestController {
 								   equipreq.getProjectorScreens(),
 								   equipreq.getMicrophones(),
 								   equipreq.getSpeakers());
+	}
+	
+	@POST
+	@Path("/setstatus")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	public String setStatus(@FormParam("reservationID") Long reservationID,
+							@FormParam("status") String status) {
+		return rc.setStatus(reservationID, status);
 	}
 }
