@@ -22,7 +22,6 @@ public class OfficeController {
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Office createOffice(Office office) {
-		
 		return oComp.createOffice(office);
 	}
 }

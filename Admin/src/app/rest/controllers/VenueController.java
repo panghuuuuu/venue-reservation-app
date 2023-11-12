@@ -26,6 +26,13 @@ public class VenueController {
 		
 		return vComp.createVenue(venue);
 	}
-
+	
+	@POST
+	@Path("/view")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Venue viewVenue(Long venueID) {
+		return vComp.viewVenue(venueID);
+	}
 	
 }

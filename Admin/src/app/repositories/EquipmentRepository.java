@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import app.entites.Equipment;
 
 @Repository
-public interface EquipmentRepository extends JpaRepository<Equipment, Long> 
-{
+public interface EquipmentRepository extends JpaRepository<Equipment, Long>  {
+
 }

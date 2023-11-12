@@ -24,5 +24,9 @@ public class VenueComponent {
 				
 		return vRepo.save(v);
 	}
+	
+	public Venue viewVenue(Long venueID) {
+		return vRepo.findByvenueID(venueID);
+	}
 
 }
