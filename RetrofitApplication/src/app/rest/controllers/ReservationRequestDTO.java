@@ -1,5 +1,8 @@
 package app.rest.controllers;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 import javax.persistence.Entity;
 
 @Entity
@@ -10,8 +13,8 @@ public class ReservationRequestDTO {
 	private String venueName;
 	private String building;
 	private String roomNo;
-	private String date;
-	private String time;
+	private LocalDate date;
+	private LocalTime time;
 	
 	public Long getReserveeID() {
 		return reserveeID;
@@ -43,16 +46,16 @@ public class ReservationRequestDTO {
 	public void setRoomNo(String roomNo) {
 		this.roomNo = roomNo;
 	}
-	public String getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
-	public void setDate(String date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
-	public String getTime() {
+	public LocalTime getTime() {
 		return time;
 	}
-	public void setTime(String time) {
+	public void setTime(LocalTime time) {
 		this.time = time;
 	}
 	

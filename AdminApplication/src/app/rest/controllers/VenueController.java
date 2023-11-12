@@ -30,7 +30,7 @@ public class VenueController {
 	@Path("/view")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Venue viewVenue(Long venueID) {
-		return vComp.viewVenue(venueID);
+	public Venue viewVenue(Venue venue) {
+		return vComp.viewVenue(venue.getVenueID());
 	}
 }

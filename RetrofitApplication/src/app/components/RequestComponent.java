@@ -1,6 +1,8 @@
 package app.components;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -25,7 +27,7 @@ public class RequestComponent {
 	@PostConstruct
 	public void init() {
 		retrofit = new Retrofit.Builder()
-				.baseUrl("https://localhost:9999")
+				.baseUrl("https://bogus")
 				.addConverterFactory(GsonConverterFactory.create())
 				.build();
 		
@@ -37,8 +39,8 @@ public class RequestComponent {
 								     String venueName, 
 								     String building, 
 								     String roomNo,
-								     String date, 
-								     String time) throws IOException {
+								     LocalDate date, 
+								     LocalTime time) throws IOException {
 		
 		Call<Reservee> verifyReservee = service.verifyReservee(reserveeID);
 		Response<Reservee> reserveeVerificationReply = verifyReservee.execute();
@@ -49,10 +51,10 @@ public class RequestComponent {
 			return "The reserveeID "+ reserveeID +" does not exist. Please create an account first.";
 		} 
 		
-		Call<Venue> verifySchedule = service.verifySchedule(venueID);
-		Response<Venue> scheduleVerificationReply = verifySchedule.execute();
+		// Call<Venue> verifySchedule = service.verifySchedule(venueID);
+		// Response<Venue> scheduleVerificationReply = verifySchedule.execute();
 		
-		List<String> schedule = scheduleVerificationReply.body().getSchedule();
+		// List<String> schedule = scheduleVerificationReply.body().getSchedule();
 		
 		// TODO: go through the schedule list and check if the given time and date exists in the venue
 		
@@ -75,14 +77,18 @@ public class RequestComponent {
 							       Long microphones, 
 							       Long speakers) throws IOException {
 		
-		Call<Reservation> verifyReservation = service.verifyReservation(reservationID);
-		Response<Reservation> reservationVerificactionReply = verifyReservation.execute();
 		
-		Reservation reservation = reservationVerificactionReply.body();
 		
-		if(reservation == null) {
-			return "This reservationID " + reservationID + " does not exist. Please make a reservation first.";
-		}
+		// TODO: add a method to verify if the reservation exists
+		
+		// Call<Reservation> verifyReservation = service.verifyReservation(reservationID);
+		// Response<Reservation> reservationVerificactionReply = verifyReservation.execute();
+		
+		// Reservation reservation = reservationVerificactionReply.body();
+		
+		// if(reservation == null) {
+		//	   return "This reservationID " + reservationID + " does not exist. Please make a reservation first.";
+		// }
 		
 		// TODO: add a method to create the equipment request
 		
@@ -92,21 +98,23 @@ public class RequestComponent {
 
 	public String setStatus(Long reservationID, String status) throws IOException {
 		
-		Call<Reservation> verifyReservation = service.verifyReservation(reservationID);
-		Response<Reservation> reservationVerificactionReply = verifyReservation.execute();
+		// TODO: add a method to verify if the reservation exists
+		// Call<Reservation> verifyReservation = service.verifyReservation(reservationID);
+		// Response<Reservation> reservationVerificactionReply = verifyReservation.execute();
 		
-		Reservation reservation = reservationVerificactionReply.body();
+		// Reservation reservation = reservationVerificactionReply.body();
 		
-		if(reservation == null) {
-			return "This reservationID " + reservationID + " does not exist. Please make a reservation first.";
-		}
+		// if(reservation == null) {
+		//  	return "This reservationID " + reservationID + " does not exist. Please make a reservation first.";
+		//}
 		
-		Call<ResponseBody> changeStatus = service.changeStatus(reservationID, status);
-		Response<ResponseBody> statusChangeReply = changeStatus.execute();
+		// TODO: add a method to change the reservation status
+		// Call<ResponseBody> changeStatus = service.changeStatus(reservationID, status);
+		// Response<ResponseBody> statusChangeReply = changeStatus.execute();
 		
-		String message = statusChangeReply.body().toString();
+		// String message = statusChangeReply.body().toString();
 		
-		return message;
+		return "The status has been changed.";
 	}
 
 }
