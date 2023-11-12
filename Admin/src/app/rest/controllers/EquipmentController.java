@@ -20,8 +20,7 @@ public class EquipmentController {
 	@POST
 	@Path("/create")
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Equipment createEquipment(Equipment equipment) {
+	public String createEquipment(Equipment equipment) {
 		return eComp.createEquipment(equipment);
 	}
 }

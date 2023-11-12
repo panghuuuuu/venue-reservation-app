@@ -12,7 +12,7 @@ public class EquipmentComponent {
 	@Autowired
 	private EquipmentRepository eRepo;
 	
-	public Equipment createEquipment(Equipment equipment)
+	public String createEquipment(Equipment equipment)
 	 {
 			
 			Equipment e = new Equipment();
@@ -23,7 +23,8 @@ public class EquipmentComponent {
 			e.setProjectorScreens(equipment.getProjectorScreens());
 			e.setMicrophones(equipment.getMicrophones());
 			e.setSpeakers(equipment.getSpeakers());
+			eRepo.save(e);
 					
-			return eRepo.save(e);
+			return "Equipment has been successfully created.";
 		}
 }
