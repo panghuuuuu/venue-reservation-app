@@ -25,13 +25,11 @@ public class RequestComponent {
 	RequestIF service;
 	
 	@PostConstruct
-	public void init() {
+	public void init(){
 		retrofit = new Retrofit.Builder()
-				.baseUrl("https://bogus")
+				.baseUrl("http://localhost:9999")
 				.addConverterFactory(GsonConverterFactory.create())
 				.build();
-		
-		service = retrofit.create(RequestIF.class);
 	}
 
 	public String requestReservation(Long reserveeID, 
