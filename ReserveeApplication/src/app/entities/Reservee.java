@@ -22,7 +22,7 @@ public class Reservee {
 
 	@Column
 	@NotNull(message="Type cannot be null.")
-	@Pattern(regexp = "^(student|faculty)$")
+	@Pattern(regexp = "^(student|faculty|organization)$")
 	private String type;
 
 	@NotNull(message="First Name cannot be null.")
