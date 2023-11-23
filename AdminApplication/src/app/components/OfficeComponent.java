@@ -3,7 +3,7 @@ package app.components;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import app.entites.Office;
+import app.entities.Office;
 import app.repositories.OfficeRepository;
 
 @Component

@@ -3,7 +3,8 @@ package app.components;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import app.entites.Equipment;
+import app.entities.Equipment;
+import app.entities.EquipmentRequest;
 import app.repositories.EquipmentRepository;
 
 @Component
@@ -12,19 +13,18 @@ public class EquipmentComponent {
 	@Autowired
 	private EquipmentRepository eRepo;
 	
-	public String createEquipment(Equipment equipment)
+	public Equipment createEquipment(EquipmentRequest equipreq)
 	 {
-			
 			Equipment e = new Equipment();
-			e.setTables(equipment.getTables());
-			e.setChairs(equipment.getChairs());
-			e.setExtensions(equipment.getExtensions());
-			e.setProjectors(equipment.getProjectors());
-			e.setProjectorScreens(equipment.getProjectorScreens());
-			e.setMicrophones(equipment.getMicrophones());
-			e.setSpeakers(equipment.getSpeakers());
-			eRepo.save(e);
+			e.setTables(equipreq.getTables());
+			e.setChairs(equipreq.getChairs());
+			e.setExtensions(equipreq.getExtensions());
+			e.setProjectors(equipreq.getProjectors());
+			e.setProjectorScreens(equipreq.getProjectorScreens());
+			e.setMicrophones(equipreq.getMicrophones());
+			e.setSpeakers(equipreq.getSpeakers());
+			e = eRepo.save(e);
 					
-			return "Equipment has been successfully created.";
+			return e;
 		}
 }

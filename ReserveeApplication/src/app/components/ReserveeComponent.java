@@ -1,5 +1,7 @@
 package app.components;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -14,11 +16,11 @@ public class ReserveeComponent {
 
 	public String create(Reservee re) {
 		re = reserveeRepo.save(re);
-		String message = "Account has been successfully created.";
-		return message;
+		return re.toString();
 	}
 
 	public Reservee verifyReservee(Long reserveeID) {
-		return reserveeRepo.findByreserveeID(reserveeID);
+		Reservee reservee = reserveeRepo.findByreserveeID(reserveeID);
+		return reservee;
 	}
 }

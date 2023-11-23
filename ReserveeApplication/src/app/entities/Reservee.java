@@ -12,7 +12,7 @@ import javax.validation.constraints.Pattern;
 public class Reservee {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // autoincrement
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column
 	private Long reserveeID;
 
@@ -41,11 +41,11 @@ public class Reservee {
 		this.reserveeID = reserveeID;
 	}
 
-	public Long getSchoolId() {
+	public Long getSchoolID() {
 		return schoolID;
 	}
 
-	public void setSchoolId(Long schoolID) {
+	public void setSchoolID(Long schoolID) {
 		this.schoolID = schoolID;
 	}
 

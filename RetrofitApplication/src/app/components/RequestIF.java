@@ -1,45 +1,39 @@
 package app.components;
 
+import app.entities.Equipment;
+import app.entities.EquipmentRequest;
 import app.entities.Reservation;
+import app.entities.ReservationRequest;
 import app.entities.Reservee;
 import app.entities.Venue;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface RequestIF {
 	
-	@POST("http://localhost:9998/reservee/verify")
+	@GET("http://localhost:9997/reservee/view")
+	Call<Reservee> verifyReservee(@Query("reserveeID") Long reserveeID);
+	
+	@GET("http://localhost:9998/venue/view")
+	Call<Venue> verifyVenue(@Query("venueID") Long venueID);
+	
+	@POST("http://localhost:9997/reservation/create")
+	Call<Reservation> requestReservation(@Body ReservationRequest resreq);
+	
+	@POST("http://localhost:9998/equipment/create")
+	Call<Equipment> requestEquipment(@Body EquipmentRequest equipreq);
+	
+	@GET("http://localhost:9997/reservation/view")
+	Call<Reservation> verifyReservation(@Query("reservationID") Long reservationID);
+	
+	@POST("http://localhost:9997/reservation/setstatus")
 	@FormUrlEncoded
-	Call<Reservee> verifyReservee(@Field("reserveeID") Long reserveeID);
-	
-	// TODO: finalize ReserveeApplication method for creating a reservation
-	//       and add parameters
-	// @POST("http://localhost:9998/reservation/create")
-	// Call<ResponseBody> createReservation();
-	
-	// TODO: finalize AdminApplication method for creating an equipment request
-	//       and add parameters
-	// @POST("http://localhost:9998/equipment/create")
-	// Call<ResponseBody> createEquipment();
-	
-	@POST("http://localhost:9998/reservation/view")
-	@FormUrlEncoded
-	Call<Reservation> verifyReservation(@Field("reservationID") Long reservationID);
-
-	// TODO: finalize viewVenue method in VenueController
-	// @POST("http://localhost:9998/venue/view")
-	// Call<Venue> verifySchedule(@Field("venueID") Long venueID);
-	
-	@POST("http://localhost:9998/reservation/setstatus")
-	@FormUrlEncoded
-	Call<ResponseBody> changeStatus(@Field("reservationID") Long reservationID,
-							        @Field("status") String status);
-	
-	// TODO: create a method to get all approved reservations
-	@GET("http://localhost:9998/reservee/approvedreservations")
-	Call<ResponseBody> getApprovedReservations();
+	Call<ResponseBody> setReservationStatus(@Field("reservationID") Long reservationID,
+											@Field("status") String status);
 }

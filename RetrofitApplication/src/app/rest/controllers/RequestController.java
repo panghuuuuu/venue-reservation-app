@@ -1,7 +1,5 @@
 package app.rest.controllers;
 
-import java.io.IOException;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
@@ -11,6 +9,8 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import app.components.RequestComponent;
+import app.entities.EquipmentRequest;
+import app.entities.ReservationRequest;
 
 @Path("/request")
 public class RequestController {
@@ -21,35 +21,22 @@ public class RequestController {
 	@POST
 	@Path("/reservation")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String requestReservation(ReservationRequestDTO resreq) throws IOException {
-		return rc.requestReservation(resreq.getReserveeID(),
-									 resreq.getVenueID(),
-									 resreq.getVenueName(),
-									 resreq.getBuilding(),
-									 resreq.getRoomNo(),
-									 resreq.getDate(),
-									 resreq.getTime());
+	public String requestReservation(ReservationRequest resreq) throws Exception {
+		return rc.requestReservation(resreq);
 	}
 	
 	@POST
 	@Path("/equipment")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String requestEquipment(EquipmentRequestDTO equipreq) throws IOException {
-		return rc.requestEquipment(equipreq.getReservationID(),
-								   equipreq.getTables(),
-								   equipreq.getChairs(),
-								   equipreq.getExtensions(),
-								   equipreq.getProjectors(),
-								   equipreq.getProjectorScreens(),
-								   equipreq.getMicrophones(),
-								   equipreq.getSpeakers());
+	public String requestEquipment(EquipmentRequest equipreq) throws Exception {
+		return rc.requestEquipment(equipreq);
 	}
 	
 	@POST
 	@Path("/setstatus")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	public String setStatus(@FormParam("reservationID") Long reservationID,
-							@FormParam("status") String status) throws IOException {
+							@FormParam("status") String status) throws Exception {
 		return rc.setStatus(reservationID, status);
 	}
 }

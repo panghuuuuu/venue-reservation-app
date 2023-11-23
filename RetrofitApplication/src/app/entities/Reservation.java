@@ -1,7 +1,5 @@
 package app.entities;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,18 +23,29 @@ public class Reservation {
 	@Column
 	private Long reserveeID;
 	
-	@NotNull(message="Date cannot be null.")
+	@NotNull(message="Year cannot be null.")
 	@Column
-	private LocalDate date;
+	private int reservationYear;
 	
-	@NotNull(message="Time cannot be null.")
+	@NotNull(message="Month cannot be null.")
+	@Column
+	private int reservationMonth;
+	
+	@NotNull(message="Day cannot be null.")
+	@Column
+	private int reservationDay;
+	
+	@NotNull(message="Starting time cannot be null.")
     @Column
-    private LocalTime time;
+    private String timeStart;
+	
+	@NotNull(message="Ending time cannot be null.")
+	@Column
+	private String timeEnd;
     
 	@NotNull(message="Status cannot be null.")
     @Column
     private String status;
-    
 
 	public Long getReservationID() {
 		return reservationID;
@@ -61,21 +70,45 @@ public class Reservation {
 	public void setReserveeID(Long reserveeID) {
 		this.reserveeID = reserveeID;
 	}
-
-	public LocalDate getDate() {
-		return date;
+	
+	public int getReservationYear() {
+		return reservationYear;
 	}
 
-	public void setDate(LocalDate date) {
-		this.date = date;
+	public void setReservationYear(int reservationYear) {
+		this.reservationYear = reservationYear;
 	}
 
-	public LocalTime getTime() {
-		return time;
+	public int getReservationMonth() {
+		return reservationMonth;
 	}
 
-	public void setTime(LocalTime time) {
-		this.time = time;
+	public void setReservationMonth(int reservationMonth) {
+		this.reservationMonth = reservationMonth;
+	}
+
+	public int getReservationDay() {
+		return reservationDay;
+	}
+
+	public void setReservationDay(int reservationDay) {
+		this.reservationDay = reservationDay;
+	}
+
+	public String getTimeStart() {
+		return timeStart;
+	}
+
+	public void setTimeStart(String timeStart) {
+		this.timeStart = timeStart;
+	}
+
+	public String getTimeEnd() {
+		return timeEnd;
+	}
+
+	public void setTimeEnd(String timeEnd) {
+		this.timeEnd = timeEnd;
 	}
 
 	public String getStatus() {
@@ -89,7 +122,8 @@ public class Reservation {
 	@Override
 	public String toString() {
 		return "Reservation [reservationID=" + reservationID + ", venueID=" + venueID + ", reserveeID=" + reserveeID
-				+ ", date=" + date + ", time=" + time + ", status=" + status + "]";
+				+ ", reservationYear=" + reservationYear + ", reservationMonth=" + reservationMonth
+				+ ", reservationDay=" + reservationDay + ", timeStart=" + timeStart + ", timeEnd=" + timeEnd
+				+ ", status=" + status + "]";
 	}
-
 }

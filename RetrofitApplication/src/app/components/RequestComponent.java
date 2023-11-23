@@ -1,15 +1,12 @@
 package app.components;
 
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-
 import javax.annotation.PostConstruct;
-
 import org.springframework.stereotype.Component;
-
+import app.entities.EquipmentRequest;
 import app.entities.Reservation;
+import app.entities.Equipment;
+import app.entities.ReservationRequest;
 import app.entities.Reservee;
 import app.entities.Venue;
 import okhttp3.ResponseBody;
@@ -27,92 +24,98 @@ public class RequestComponent {
 	@PostConstruct
 	public void init(){
 		retrofit = new Retrofit.Builder()
-				.baseUrl("http://localhost:9999")
+				.baseUrl("https://localhost:9999")
 				.addConverterFactory(GsonConverterFactory.create())
 				.build();
+		
+		service = retrofit.create(RequestIF.class);
 	}
 
-	public String requestReservation(Long reserveeID, 
-								     Long venueID, 
-								     String venueName, 
-								     String building, 
-								     String roomNo,
-								     LocalDate date, 
-								     LocalTime time) throws IOException {
+	public String requestReservation(ReservationRequest resreq) throws Exception {
 		
-		Call<Reservee> verifyReservee = service.verifyReservee(reserveeID);
-		Response<Reservee> reserveeVerificationReply = verifyReservee.execute();
+		String message;
+		Long reserveeID = resreq.getReserveeID();
+		Long venueID = resreq.getVenueID();
 		
-		Reservee reservee = reserveeVerificationReply.body();
+		Call<Reservee> reserveeVerification = service.verifyReservee(reserveeID);
+		Response<Reservee> reserveeVerificationResponse = reserveeVerification.execute();
 		
-		if(reservee == null) {
-			return "The reserveeID "+ reserveeID +" does not exist. Please create an account first.";
-		} 
+		Reservee reservee = reserveeVerificationResponse.body();
 		
-		// Call<Venue> verifySchedule = service.verifySchedule(venueID);
-		// Response<Venue> scheduleVerificationReply = verifySchedule.execute();
+		if (reservee == null) {
+			message = "The reserveeID " + reserveeID + " does not exist. Please create an account first.";
+			return message;
+		} else if (!(reservee.getSchoolID().equals(resreq.getSchoolID()))) {
+			message = "Please make sure you are using the correct reserveeID.";
+			return message;
+		}
 		
-		// List<String> schedule = scheduleVerificationReply.body().getSchedule();
+		Call<Venue> venueVerification = service.verifyVenue(venueID);
+		Response<Venue> venueVerificationResponse = venueVerification.execute();
 		
-		// TODO: go through the schedule list and check if the given time and date exists in the venue
+		Venue venue = venueVerificationResponse.body();
 		
-		// TODO: go through all approved reservations and check for any time conflicts
+		if(venue == null) {
+			message = "The venue " + venueID + " does not exist.";
+			return message;
+		}
 		
-		Reservation reservation = new Reservation();
+		Call<Reservation> reservationRequest = service.requestReservation(resreq);
+		Response<Reservation> reservationRequestResponse = reservationRequest.execute();
 		
-		// TODO: add method to create the reservation
+		Reservation reservation = reservationRequestResponse.body();
+		Long reservationID = reservation.getReservationID();
 		
-		// TODO: edit the string to follow the project proposal
-		return "The reservation is successfully requested.";
+		message = "The reservation is successfully requested. ReservationID: " + reservationID + ".";
+		return message;
 	}
 
-	public String requestEquipment(Long reservationID, 
-							       Long tables, 
-							       Long chairs, 
-							       Long extensions, 
-							       Long projectors,
-							       Long projectorScreens, 
-							       Long microphones, 
-							       Long speakers) throws IOException {
+	public String requestEquipment(EquipmentRequest equipreq) throws Exception {
 		
+		System.out.println(equipreq);
+		String message;
+		Long reservationID = equipreq.getReservationID();
 		
+		Call<Reservation> reservationVerification = service.verifyReservation(reservationID);
+		Response<Reservation> reservationVerificationResponse = reservationVerification.execute();
 		
-		// TODO: add a method to verify if the reservation exists
+		Reservation reservation = reservationVerificationResponse.body();
 		
-		// Call<Reservation> verifyReservation = service.verifyReservation(reservationID);
-		// Response<Reservation> reservationVerificactionReply = verifyReservation.execute();
+		if(reservation == null) {
+			message = "This reservationID "+ reservationID +" does not exist. Please create a reservation first.";
+			return message;
+		}
 		
-		// Reservation reservation = reservationVerificactionReply.body();
+		Call<Equipment> equipmentRequest = service.requestEquipment(equipreq);
+		Response<Equipment> equipmentRequestResponse = equipmentRequest.execute();
+		System.out.println(equipmentRequestResponse);
 		
-		// if(reservation == null) {
-		//	   return "This reservationID " + reservationID + " does not exist. Please make a reservation first.";
-		// }
+		Equipment equipment = equipmentRequestResponse.body();
+		Long equipmentID = equipment.getEquipmentID();
 		
-		// TODO: add a method to create the equipment request
-		
-		// TODO: edit the string to follow the project proposal
-		return "The equipment is successfully requested.";
+		message = "The equipment is successfully requested. EquipmentRequestID: "+ equipmentID +".";
+		return message;
 	}
 
-	public String setStatus(Long reservationID, String status) throws IOException {
+	public String setStatus(Long reservationID, String status) throws Exception {
 		
-		// TODO: add a method to verify if the reservation exists
-		// Call<Reservation> verifyReservation = service.verifyReservation(reservationID);
-		// Response<Reservation> reservationVerificactionReply = verifyReservation.execute();
+		String message;
 		
-		// Reservation reservation = reservationVerificactionReply.body();
+		Call<Reservation> reservationVerification = service.verifyReservation(reservationID);
+		Response<Reservation> reservationVerificationResponse = reservationVerification.execute();
 		
-		// if(reservation == null) {
-		//  	return "This reservationID " + reservationID + " does not exist. Please make a reservation first.";
-		//}
+		Reservation reservation = reservationVerificationResponse.body();
 		
-		// TODO: add a method to change the reservation status
-		// Call<ResponseBody> changeStatus = service.changeStatus(reservationID, status);
-		// Response<ResponseBody> statusChangeReply = changeStatus.execute();
+		if(reservation == null) {
+			message = "This reservationID "+ reservationID +" does not exist.";
+			return message;
+		}
 		
-		// String message = statusChangeReply.body().toString();
+		Call<ResponseBody> statusUpdate = service.setReservationStatus(reservationID, status);
+		Response<ResponseBody> statusUpdateResponse = statusUpdate.execute();
 		
-		return "The status has been changed.";
+		message = statusUpdateResponse.body().string();
+		
+		return message;
 	}
-
 }

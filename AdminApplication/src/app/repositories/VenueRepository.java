@@ -3,7 +3,7 @@ package app.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import app.entites.Venue;
+import app.entities.Venue;
 
 @Repository
 public interface VenueRepository extends JpaRepository<Venue, Long> {

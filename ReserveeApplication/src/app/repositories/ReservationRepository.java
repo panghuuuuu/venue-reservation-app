@@ -8,6 +8,6 @@ import app.entities.Reservation;
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
 	public Reservation findByreservationID(Long reservationID);
-	public Reservation findBystatus(String status);
+	public Reservation findByStatus(String status);
 
 }

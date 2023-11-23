@@ -9,7 +9,7 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import app.components.OfficeComponent;
-import app.entites.Office;
+import app.entities.Office;
 
 @Path("/office")
 public class OfficeController {

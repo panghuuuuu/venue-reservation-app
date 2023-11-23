@@ -9,7 +9,8 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import app.components.EquipmentComponent;
-import app.entites.Equipment;
+import app.entities.Equipment;
+import app.entities.EquipmentRequest;
 
 @Path("/equipment")
 public class EquipmentController {
@@ -20,7 +21,8 @@ public class EquipmentController {
 	@POST
 	@Path("/create")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String createEquipment(Equipment equipment) {
-		return eComp.createEquipment(equipment);
+	@Produces(MediaType.APPLICATION_JSON)
+	public Equipment createEquipment(EquipmentRequest equipreq) {
+		return eComp.createEquipment(equipreq);
 	}
 }

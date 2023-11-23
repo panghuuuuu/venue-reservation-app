@@ -1,9 +1,6 @@
 package app.entities;
 
-import java.util.List;
-
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +11,7 @@ import javax.validation.constraints.NotNull;
 public class Venue {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)  // autoincrement
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column
 	private Long venueID;
 	
@@ -27,16 +24,11 @@ public class Venue {
 	private String building;
 	
 	@Column
-	private int roomNo;
+	private String roomNo;
 	
 	@Column
 	@NotNull(message="Office must be valid.")
 	private String officeAssigned;
-
-	@Column
-	@ElementCollection(targetClass=String.class)
-	@NotNull(message="Schedule must be valid.")
-	private List<String> schedule;
 
 	public Long getVenueID() {
 		return venueID;
@@ -62,11 +54,11 @@ public class Venue {
 		this.building = building;
 	}
 
-	public int getRoomNo() {
+	public String getRoomNo() {
 		return roomNo;
 	}
 
-	public void setRoomNo(int roomNo) {
+	public void setRoomNo(String roomNo) {
 		this.roomNo = roomNo;
 	}
 
@@ -78,19 +70,9 @@ public class Venue {
 		this.officeAssigned = officeAssigned;
 	}
 
-	public List<String> getSchedule() {
-		return schedule;
-	}
-
-	public void setSchedule(List<String> schedule) {
-		this.schedule = schedule;
-	}
-
 	@Override
 	public String toString() {
 		return "Venue [venueID=" + venueID + ", venueName=" + venueName + ", building=" + building + ", roomNo="
-				+ roomNo + ", officeAssigned=" + officeAssigned + ", schedule=" + schedule + "]";
+				+ roomNo + ", officeAssigned=" + officeAssigned + "]";
 	}
-	
-	
 }

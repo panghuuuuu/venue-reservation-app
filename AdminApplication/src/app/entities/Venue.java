@@ -1,12 +1,7 @@
-package app.entites;
-
-import java.util.ArrayList;
-import java.util.List;
+package app.entities;
 
 import javax.persistence.Column;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,16 +24,11 @@ public class Venue {
 	private String building;
 	
 	@Column
-	private int roomNo;
+	private String roomNo;
 	
 	@Column
 	@NotNull(message="Office must be valid.")
 	private String officeAssigned;
-
-	@Column
-	@ElementCollection(targetClass=String.class)
-	@NotNull(message="Schedule must be valid.")
-	private List<String> schedule;
 
 	public Long getVenueID() {
 		return venueID;
@@ -64,11 +54,11 @@ public class Venue {
 		this.building = building;
 	}
 
-	public int getRoomNo() {
+	public String getRoomNo() {
 		return roomNo;
 	}
 
-	public void setRoomNo(int roomNo) {
+	public void setRoomNo(String roomNo) {
 		this.roomNo = roomNo;
 	}
 
@@ -79,24 +69,10 @@ public class Venue {
 	public void setOfficeAssigned(String officeAssigned) {
 		this.officeAssigned = officeAssigned;
 	}
-	
-	@ElementCollection(targetClass = String.class, fetch = FetchType.EAGER)
-	public List<String> getSchedule() {
-	    if (schedule == null) {
-	        schedule = new ArrayList<>();
-	    }
-	    return schedule;
-	}
-
-	public void setSchedule(List<String> schedule) {
-		this.schedule = schedule;
-	}
 
 	@Override
 	public String toString() {
 		return "Venue [venueID=" + venueID + ", venueName=" + venueName + ", building=" + building + ", roomNo="
-				+ roomNo + ", officeAssigned=" + officeAssigned + ", schedule=" + schedule + "]";
+				+ roomNo + ", officeAssigned=" + officeAssigned + "]";
 	}
-	
-	
 }
