@@ -10,5 +10,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/SpringBootDependencies"/>
 	<classpathentry kind="lib" path="C:/Users/BRESCIA/Documents/BS CS (SY 2023-2024)/.1ST SEM/CSCI 180.05/Final Project/venue-reservation-app/converter-gson-2.1.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/BRESCIA/Documents/BS CS (SY 2023-2024)/.1ST SEM/CSCI 180.05/Final Project/venue-reservation-app/gson-2.6.2.jar"/>
+	<classpathentry kind="lib" path="/Lab4/converter-gson-2.1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

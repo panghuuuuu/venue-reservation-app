@@ -10,23 +10,27 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import app.components.ReservationComponent;
 import app.entities.Reservation;
 import app.entities.ReservationRequest;
 
-@Path("/reservation")
+@RestController
+@RequestMapping("/reservation")
 public class ReservationController {
 	@Autowired
 	private ReservationComponent rComp;
 
-	@GET
-	@Path("/view")
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Reservation view(@QueryParam("reservationID") Long reservationID) {
-		return rComp.view(reservationID);
-	}
+	
+    @GetMapping("/view")
+    public Reservation view(@RequestParam("reservationID") Long reservationID) {
+        return rComp.view(reservationID);
+    }
 
 	@POST
 	@Path("/create")
