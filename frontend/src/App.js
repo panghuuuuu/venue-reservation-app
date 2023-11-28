@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import axios from "axios";
+import CreateReserveeAccount from "./components/CreateReserveeAccount";
 
 function App() {
   const [reserveeID, setReserveeID] = useState("");
@@ -30,6 +31,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+        <CreateReserveeAccount />
         <label>
           Enter Reservee ID:
           <input
