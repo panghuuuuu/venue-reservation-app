@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
 @SpringBootApplication
-// this will disable the DB initialization which we do not need at this point
 public class AdminApp {
 
 	public static void main(String[] args) {

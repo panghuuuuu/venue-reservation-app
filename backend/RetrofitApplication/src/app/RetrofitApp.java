@@ -8,10 +8,10 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerA
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 
 @SpringBootApplication
-@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class, DataSourceTransactionManagerAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
-public class RetrofitAppl {
+@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class, DataSourceTransactionManagerAutoConfiguration.class, HibernateJpaAutoConfiguration.class}) // Disable database
+public class RetrofitApp {
 
 	public static void main(String[] args) {
-		SpringApplication.run(RetrofitAppl.class, args);
+		SpringApplication.run(RetrofitApp.class, args);
 	}
 }

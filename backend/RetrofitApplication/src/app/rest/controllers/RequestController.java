@@ -4,13 +4,14 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import app.components.RequestComponent;
 import app.entities.EquipmentRequest;
-import app.entities.ReservationRequest;
+import app.entities.ReservationRequestDTO;
 
 @Path("/request")
 public class RequestController {
@@ -21,7 +22,7 @@ public class RequestController {
 	@POST
 	@Path("/reservation")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String requestReservation(ReservationRequest resreq) throws Exception {
+	public String requestReservation(ReservationRequestDTO resreq) throws Exception {
 		return rc.requestReservation(resreq);
 	}
 	
@@ -35,6 +36,7 @@ public class RequestController {
 	@POST
 	@Path("/setstatus")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.TEXT_PLAIN)
 	public String setStatus(@FormParam("reservationID") Long reservationID,
 							@FormParam("status") String status) throws Exception {
 		return rc.setStatus(reservationID, status);

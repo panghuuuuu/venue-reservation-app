@@ -1,10 +1,13 @@
 package app.components;
 
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.entities.Reservation;
-import app.entities.ReservationRequest;
 import app.repositories.ReservationRepository;
 
 @Component
@@ -17,60 +20,45 @@ public class ReservationComponent {
 		return reservationRepo.findByreservationID(id);
 	}
 
-	public Reservation create(ReservationRequest resreq) {
-		
-		Reservation reservation = new Reservation();
-		reservation.setReserveeID(resreq.getReserveeID());
-		reservation.setVenueID(resreq.getVenueID());
-		reservation.setReservationYear(resreq.getReservationYear());
-		reservation.setReservationMonth(resreq.getReservationMonth());
-		reservation.setReservationDay(resreq.getReservationDay());
-		reservation.setTimeStart(resreq.getTimeStart());
-		reservation.setTimeEnd(resreq.getTimeEnd());
-		reservation.setStatus("Pending");
-		
-		return reservationRepo.save(reservation);
-	}
-
-	public String edit(Long reservationID,
-					   Long reserveeID, 
-					   int reservationYear, 
-					   int reservationMonth, 
-					   int reservationDay, 
-					   String timeStart,
-					   String timeEnd) {
-		Reservation reservation = reservationRepo.findByreservationID(reservationID);
-		
-		if(reservation == null) {
-			return "The reservation (reservationID: "+ reservationID +") does not exist, Please make a reservation first.";
-		}
-		else if (reservation.getReserveeID() != reserveeID) {
-			return "Please use the correct reserveeID associated with the request.";
-		}
-		
-		reservation.setReservationYear(reservationYear);
-		reservation.setReservationMonth(reservationMonth);
-		reservation.setReservationDay(reservationDay);
-		reservation.setTimeStart(timeStart);
-		reservation.setTimeEnd(timeEnd);
-		reservation.setStatus("Pending");
-		reservation = reservationRepo.save(reservation);
-		
-		return reservation.toString();
+	public Reservation create(Reservation res) {
+		res.setStatus("Pending");
+		return reservationRepo.save(res);
 	}
 	
+	public List<Reservation> findConflict(Reservation res) {
+		LocalTime timeStart = LocalTime.parse(res.getTimeStart());
+		LocalTime timeEnd = LocalTime.parse(res.getTimeEnd());
+		
+		// 1. Get Approved Reservations on the same Year, Month, Day, and Venue
+		List<Reservation> conflict = new ArrayList<>();
+		List<Reservation> possibleConflicts = reservationRepo.findByVenueIDYearMonthDay(res.getVenueID(), 
+																						res.getYear(),
+																						res.getMonth(),
+																						res.getDay());
+		
+		// 2. Check for time overlap
+		for(Reservation r : possibleConflicts) {
+			LocalTime rStart = LocalTime.parse(r.getTimeStart());
+			LocalTime rEnd = LocalTime.parse(r.getTimeEnd());
+			
+			if(timeStart.isBefore(rEnd) && timeEnd.isAfter(rStart) ) {
+				conflict.add(r);
+			}
+		}
+		return conflict;
+	}
 	
 	public String cancel(Long reservationID, Long reserveeID) {
 		Reservation cancelledReservation = reservationRepo.findByreservationID(reservationID);
-		if (cancelledReservation.getReserveeID() == reserveeID) {
-			cancelledReservation.setStatus("Cancelled");
-			reservationRepo.save(cancelledReservation);
+		if (cancelledReservation.getReserveeID() != reserveeID) {
+			return "The reservation (reservationID: "+ reservationID +") is not associated with this reserveeID.";
 		}
+		cancelledReservation.setStatus("Cancelled");
+		reservationRepo.save(cancelledReservation);
 		return "The reservation (reservationID: "+ reservationID +") has been cancelled.";
 	}
 
 	public String setStatus(Long reservationID, String status) {
-		
 		Reservation reservation = reservationRepo.findByreservationID(reservationID);
 		reservation.setStatus(status);
 		reservation = reservationRepo.save(reservation);

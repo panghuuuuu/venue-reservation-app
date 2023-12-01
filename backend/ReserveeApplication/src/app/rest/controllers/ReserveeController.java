@@ -1,7 +1,10 @@
 package app.rest.controllers;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -58,9 +61,9 @@ public class ReserveeController {
 	@Path("/view")
 	@Produces(MediaType.APPLICATION_JSON)    
     @CrossOrigin(origins = {"http://localhost:3000", "http://172.20.10.5:3000", "http://localhost:9997"})
-    public Response verifyReservee(@QueryParam("reserveeID") Long reserveeID) {
+    public Response viewReservee(@QueryParam("reserveeID") Long reserveeID) {
         try {
-            return Response.ok(rComp.verifyReservee(reserveeID))
+            return Response.ok(rComp.viewReservee(reserveeID))
             		.header("Access-Control-Allow-Origin", "*")
                     .header("Access-Control-Allow-Methods", "GET, OPTIONS")
                     .header("Access-Control-Allow-Headers", "Content-Type")
@@ -69,5 +72,15 @@ public class ReserveeController {
             e.printStackTrace();
             throw e; 
         }
+    }
+    
+    @GET
+    @Path("/find")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Reservee> findReservee(@QueryParam("schoolID") Long schoolID,
+    								   @QueryParam("type") String type,
+    								   @QueryParam("firstName") String firstName,
+    								   @QueryParam("lastName") String lastName) {
+    	return rComp.findReservee(schoolID, type, firstName, lastName);
     }
 }

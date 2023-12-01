@@ -1,5 +1,6 @@
 package app.components;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,13 +15,18 @@ public class ReserveeComponent {
 	@Autowired
 	private ReserveeRepository reserveeRepo;
 
-	public String create(Reservee re) {
+	public Reservee create(Reservee re) {
 		re = reserveeRepo.save(re);
-		return re.toString();
+		return re;
+	}
+	
+	public Reservee viewReservee(Long reserveeID) {
+		return reserveeRepo.findByreserveeID(reserveeID);
+	}
+	
+	public List<Reservee> findReservee(Long schoolID, String type, String firstName, String lastName) {
+		return reserveeRepo.findBySchoolIDTypeFirstNameLastName(schoolID, type, firstName, lastName);
 	}
 
-	public Reservee verifyReservee(Long reserveeID) {
-		Reservee reservee = reserveeRepo.findByreserveeID(reserveeID);
-		return reservee;
-	}
+
 }

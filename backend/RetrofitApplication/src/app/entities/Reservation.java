@@ -5,7 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Reservation {
@@ -14,38 +18,48 @@ public class Reservation {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)  
 	@Column
 	private Long reservationID;
+	
+	@NotNull(message="ReserveeID cannot be null.")
+	@Column
+	private Long reserveeID;
 
 	@NotNull(message="VenueID cannot be null.")
 	@Column
 	private Long venueID;
 	
-	@NotNull(message="ReserveeID cannot be null.")
-	@Column
-	private Long reserveeID;
-	
 	@NotNull(message="Year cannot be null.")
 	@Column
-	private int reservationYear;
+	private int year;
 	
 	@NotNull(message="Month cannot be null.")
 	@Column
-	private int reservationMonth;
+	@Min(1)
+	@Max(12)
+	private int month;
 	
 	@NotNull(message="Day cannot be null.")
 	@Column
-	private int reservationDay;
+	@Min(1)
+	@Max(31)
+	private int day;
 	
-	@NotNull(message="Starting time cannot be null.")
-    @Column
-    private String timeStart;
-	
-	@NotNull(message="Ending time cannot be null.")
+	@NotNull(message="timeStart must be valid.")
 	@Column
-	private String timeEnd;
+	@Pattern(regexp = "^[0-9]{2}:[0-9]{2}$")
+	private String timeStart = "08:00";
+	
+	@NotNull(message="timeEnd must be valid.")
+	@Column
+	@Pattern(regexp = "^[0-9]{2}:[0-9]{2}$")
+	private String timeEnd = "17:00";
     
-	@NotNull(message="Status cannot be null.")
     @Column
     private String status;
+    
+    @NotNull(message="Purpose must be valid.")
+    @Column
+    @Size(min=1, max=50)
+    private String purpose;
 
 	public Long getReservationID() {
 		return reservationID;
@@ -53,6 +67,14 @@ public class Reservation {
 
 	public void setReservationID(Long reservationID) {
 		this.reservationID = reservationID;
+	}
+
+	public Long getReserveeID() {
+		return reserveeID;
+	}
+
+	public void setReserveeID(Long reserveeID) {
+		this.reserveeID = reserveeID;
 	}
 
 	public Long getVenueID() {
@@ -63,36 +85,28 @@ public class Reservation {
 		this.venueID = venueID;
 	}
 
-	public Long getReserveeID() {
-		return reserveeID;
+	public int getYear() {
+		return year;
 	}
 
-	public void setReserveeID(Long reserveeID) {
-		this.reserveeID = reserveeID;
-	}
-	
-	public int getReservationYear() {
-		return reservationYear;
+	public void setYear(int year) {
+		this.year = year;
 	}
 
-	public void setReservationYear(int reservationYear) {
-		this.reservationYear = reservationYear;
+	public int getMonth() {
+		return month;
 	}
 
-	public int getReservationMonth() {
-		return reservationMonth;
+	public void setMonth(int month) {
+		this.month = month;
 	}
 
-	public void setReservationMonth(int reservationMonth) {
-		this.reservationMonth = reservationMonth;
+	public int getDay() {
+		return day;
 	}
 
-	public int getReservationDay() {
-		return reservationDay;
-	}
-
-	public void setReservationDay(int reservationDay) {
-		this.reservationDay = reservationDay;
+	public void setDay(int day) {
+		this.day = day;
 	}
 
 	public String getTimeStart() {
@@ -119,11 +133,18 @@ public class Reservation {
 		this.status = status;
 	}
 
+	public String getPurpose() {
+		return purpose;
+	}
+
+	public void setPurpose(String purpose) {
+		this.purpose = purpose;
+	}
+
 	@Override
 	public String toString() {
-		return "Reservation [reservationID=" + reservationID + ", venueID=" + venueID + ", reserveeID=" + reserveeID
-				+ ", reservationYear=" + reservationYear + ", reservationMonth=" + reservationMonth
-				+ ", reservationDay=" + reservationDay + ", timeStart=" + timeStart + ", timeEnd=" + timeEnd
-				+ ", status=" + status + "]";
+		return "Reservation [reservationID=" + reservationID + ", reserveeID=" + reserveeID + ", venueID=" + venueID
+				+ ", year=" + year + ", month=" + month + ", day=" + day + ", timeStart=" + timeStart + ", timeEnd="
+				+ timeEnd + ", status=" + status + ", purpose=" + purpose + "]";
 	}
 }
