@@ -36,7 +36,7 @@ public class RequestComponent {
 		service = retrofit.create(RequestIF.class);
 	}
 
-	public String requestReservation(ReservationRequestDTO resreq) throws Exception {
+	public Reservation requestReservation(ReservationRequestDTO resreq) throws Exception {
 		
 		// 1.0 Get the Reservee instance
 		
@@ -54,6 +54,7 @@ public class RequestComponent {
 			res.setFirstName(resreq.getFirstName());
 			res.setLastName(resreq.getLastName());
 			res.setType(resreq.getType());
+			res.setEmail(resreq.getEmail());
 			
 			Call<Reservee> createReservee = service.createReservee(res);
 			Response<Reservee> createReserveeReply = createReservee.execute();
@@ -65,11 +66,7 @@ public class RequestComponent {
 		Call<Venue> viewVenue = service.viewVenue(resreq.getVenueID());
 		Response<Venue> viewVenueReply = viewVenue.execute();
 		venue = viewVenueReply.body();
-		
-		if (venue == null) {
-			return message = "This venue does not exist.";
-		} 
-		
+
 		// 3. Verify that the starting and end time is valid for the Venue
 		
 		LocalTime vStart = LocalTime.parse(venue.getTimeStart());
@@ -78,38 +75,25 @@ public class RequestComponent {
 		LocalTime rEnd = LocalTime.parse(resreq.getTimeEnd());
 		
 		if (rStart.isBefore(vStart) || rEnd.isAfter(vEnd)) {
-			return message = "This schedule is not valid for this venue.";
+			return null;
 		}
 		
-		// 4. Check for any conflicts in schedule
 		Reservation reservation = new Reservation();
 		reservation.setReserveeID(reservee.getReserveeID());
 		reservation.setVenueID(venue.getVenueID());
-		reservation.setYear(resreq.getYear());
-		reservation.setMonth(resreq.getMonth());
-		reservation.setDay(resreq.getDay());
+		reservation.setDate(resreq.getDate());
 		reservation.setTimeStart(resreq.getTimeStart());
 		reservation.setTimeEnd(resreq.getTimeEnd());
 		reservation.setPurpose(resreq.getPurpose());
-		System.out.println(reservation);
-		
-		Call<List<Reservation>> findReservationConflict = service.findReservationConflict(reservation);
-		Response<List<Reservation>> findReservationConflictReply = findReservationConflict.execute();
-		
-		List<Reservation> conflictingReservations = findReservationConflictReply.body();
-		if(!conflictingReservations.isEmpty()) {
-			return message = "There are "+ conflictingReservations.size()+ " conflicting reservation/s "
-					+ "with this schedule.";
-		}
+		reservation.setVenueName(venue.getVenueName());
 		
 		// 5. Create the instance of the reservation
 		Call<Reservation> requestReservation = service.createReservation(reservation);
 		Response<Reservation> requestReservationReply = requestReservation.execute();	
 		
 		reservation = requestReservationReply.body();
-		
-		message = "The reservation has been successfully requested. (reservationID: "+ reservation.getReservationID() +")";
-		return message;
+
+		return reservation;
 	}
 
 	public String requestEquipment(EquipmentRequest equipreq) throws Exception {

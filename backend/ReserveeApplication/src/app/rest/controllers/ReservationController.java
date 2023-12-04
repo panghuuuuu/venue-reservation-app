@@ -61,7 +61,15 @@ public class ReservationController {
 	@Path("/conflict")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Reservation> findConflicts (Reservation res) {
+		System.out.println(res);
 		return rComp.findConflict(res);
+	}
+	
+	@GET
+	@Path("/fetch")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Reservation> getAllReservations() {
+		return rComp.getRecentReservations();
 	}
 
 }

@@ -14,11 +14,11 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
 	public Reservation findByreservationID(Long reservationID);
 	public Reservation findByStatus(String status);
 	
-	@Query("SELECT r FROM Reservation r WHERE r.venueID = :venueID "
-			+ "AND r.year = :year AND r.month = :month AND r.day = :day")
-	public List<Reservation> findByVenueIDYearMonthDay(@Param("venueID") Long venueID,
-													   @Param("year") int year,
-													   @Param("month") int month,
-													   @Param("day") int day);
-
+	@Query(value = "SELECT * FROM reservation r ORDER BY r.reservationID DESC LIMIT 25;", 
+		   nativeQuery = true)
+	public List<Reservation> getRecentReservation();
+	
+	@Query("SELECT r FROM Reservation r WHERE r.venueID = :venueID AND r.date = :date")
+	public List<Reservation> findByVenueIDDAte(@Param("venueID") Long venueID, 
+											   @Param("date") String date);
 }

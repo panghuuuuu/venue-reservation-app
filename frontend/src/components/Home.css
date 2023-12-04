@@ -1,0 +1,40 @@
+.hero {
+    height: 100vh;
+    width: 100vw;
+    background-image: url(../assets/hero-bg.jpg);
+    background-size: cover;
+    background-position: center;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+  }
+  
+  .hero .title {
+    text-align: center;
+    text-transform: uppercase;
+    color: #3920CD;
+    font-weight: 500;
+  }
+  
+  .hero .title span {
+    font-size: 64px; 
+  }
+  
+  .hero .hero-buttons {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .hero .hero-buttons a {
+    background-color: #3920CD;
+    color: white;
+    font-family: 'Montserrat';
+    font-size: 18px;
+    padding: 16px;
+    border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+  }

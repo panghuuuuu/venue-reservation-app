@@ -1,0 +1,126 @@
+.reservation-list {
+    padding-top: 20vh;
+    margin: 0px 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 100px;
+}
+
+.reservation-table, tbody, thead{
+    width: 100%;
+    font-family: 'Montserrat';
+    border-spacing: 0px;
+    border: solid 1px lightgrey;
+    border-collapse: collapse;
+}
+
+.reservation-table thead td{
+    font-weight: bold;
+}
+
+.reservation-table tbody tr {
+    border: solid 1px lightgray;
+}
+
+.reservation-table td {
+    text-align: left;
+    padding: 10px;
+}
+
+.reservation-table tr:nth-child(odd) {
+    background-color: #e7e7e7;
+}
+
+.reservation-table .reservation-details p.body{
+    text-align: left;
+    font-size: 12px;
+    color: darkgray;
+}
+
+.reservation-table p.tag {
+    text-align: right;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+p.tag.Pending::after {
+    content: "Pending";
+    background-color: rgb(255, 224, 122);
+    padding: 3px 5px;
+    border-radius: 5px;
+}
+
+p.tag.Approved::after {
+    content: "Approved";
+    background-color: rgb(152, 235, 152);
+    padding: 3px 5px;
+    border-radius: 5px;
+}
+
+p.tag.Rejected::after {
+    content: "Rejected";
+    background-color: rgb(240, 151, 151);
+    padding: 3px 5px;
+    border-radius: 5px;
+}
+
+p.tag.Cancelled::after {
+    content: "Cancelled";
+    background-color: rgb(240, 151, 151);
+    padding: 3px 5px;
+    border-radius: 5px;
+}
+
+.find-reservation-by-id {
+    display: flex;
+    padding: 20px;
+    border: #3920CD solid 1px;
+    border-radius: 5px;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+}
+
+.find-reservation-by-id h2.title {
+     text-align: center;
+}
+
+.find-reservation-by-id label {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat';
+    font-size: 14px;
+}
+
+.find-reservation-by-id input {
+    margin-top: 5px;
+    font-family: 'Montserrat';
+    padding: 10px;
+    border-width: 1px;
+    border-radius: 5px;
+    width: 400px;
+    font-size: 16px;
+}
+
+.find-reservation-by-id input:focus-visible {
+    outline:#3920CD solid 1px;
+    border-color: #3920CD;
+}
+
+.find-reservation-by-id .form-button {
+    background-color: #3920CD;
+    color: white;
+    font-family: 'Montserrat';
+    font-size: 16px;
+    padding: 10px;
+    border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 0px;
+    width: min-content;
+}
+

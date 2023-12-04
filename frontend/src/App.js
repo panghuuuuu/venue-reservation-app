@@ -1,61 +1,28 @@
+
 import React, { useState } from "react";
-import "./App.css";
-import axios from "axios";
-import CreateReserveeAccount from "./components/CreateReserveeAccount";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Home from "./components/Home";
+import VenueList from "./components/VenuesList";
+import RequestForm from "./components/RequestForm";
+import ReservationList from "./components/ReservationList";
+import Success from "./components/Success";
 
 function App() {
-  const [reserveeID, setReserveeID] = useState("");
-  const [userData, setUserData] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
-
-  const fetchUserData = async () => {
-    try {
-      setLoading(true);
-      const response = await axios.get(
-        `http://localhost:9997/reservee/view?reserveeID=${reserveeID}`
-      );
-      setUserData(response.data);
-    } catch (error) {
-      console.error("Error fetching user data:", error);
-      setError("An error occurred while fetching data.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleButtonClick = () => {
-    fetchUserData();
-  };
-
   return (
-    <div className="App">
-      <header className="App-header">
-        <CreateReserveeAccount />
-        <label>
-          Enter Reservee ID:
-          <input
-            type="text"
-            value={reserveeID}
-            onChange={(e) => setReserveeID(e.target.value)}
-          />
-        </label>
-        <button onClick={handleButtonClick} disabled={loading}>
-          {loading ? "Fetching..." : "Fetch User Data"}
-        </button>
-        {error ? (
-          <div>
-            <p>{error}</p>
-          </div>
-        ) : (
-          userData && (
-            <div>
-              <h2>User Information</h2>
-              <p>{JSON.stringify(userData, null, 2)}</p>
-            </div>
-          )
-        )}
-      </header>
+    <div className="app-class">
+      <Header />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/">
+            <Route index element={<Home />} />
+            <Route path="venues" element={<VenueList />} /> 
+            <Route path="venues/:id/reserve" element={<RequestForm />} />
+            <Route path="success" element={<Success />} />
+            <Route path="reservations" element={<ReservationList />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

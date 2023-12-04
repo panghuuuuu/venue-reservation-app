@@ -1,0 +1,49 @@
+.venue-list {
+    padding-top: 20vh;
+    margin: 0px 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 100px;
+}
+
+.venue-table, tbody, thead{
+    width: 100%;
+    font-family: 'Montserrat';
+    border-spacing: 0px;
+    border: solid 1px lightgrey;
+    border-collapse: collapse;
+}
+
+.venue-table thead td{
+    font-weight: bold;
+}
+
+.venue-table tbody tr {
+    border: solid 1px lightgray;
+}
+
+.venue-table td {
+    text-align: left;
+    padding: 10px;
+}
+
+.venue-list tr:nth-child(odd) {
+background-color: #e7e7e7;
+}
+
+.venue-table a {
+    color: #3920CD;
+}
+
+.venue-table a .venue-name {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.venue-table .venue-type, .venue-building{
+    text-transform: uppercase;
+    font-size: 11px;
+}

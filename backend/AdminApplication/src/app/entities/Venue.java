@@ -43,6 +43,9 @@ public class Venue {
 	@NotNull(message="timeEnd must be valid.")
 	@Pattern(regexp = "^[0-9]{2}:[0-9]{2}$")
 	private String timeEnd = "17:00";
+	
+	@NotNull(message="timeEnd must be valid.")
+	private String type;
 
 	public Long getVenueID() {
 		return venueID;
@@ -99,12 +102,19 @@ public class Venue {
 	public void setTimeEnd(String timeEnd) {
 		this.timeEnd = timeEnd;
 	}
+	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 
 	@Override
 	public String toString() {
 		return "Venue [venueID=" + venueID + ", venueName=" + venueName + ", building=" + building + ", roomNo="
 				+ roomNo + ", officeAssigned=" + officeAssigned + ", timeStart=" + timeStart + ", timeEnd=" + timeEnd
-				+ "]";
+				+ ", type=" + type + "]";
 	}
- 
 }

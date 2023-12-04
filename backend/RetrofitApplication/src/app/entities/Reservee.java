@@ -22,7 +22,6 @@ public class Reservee {
 
 	@Column
 	@NotNull(message="Type cannot be null.")
-	@Pattern(regexp = "^(student|faculty|organization)$")
 	private String type;
 
 	@NotNull(message="First Name cannot be null.")
@@ -32,6 +31,10 @@ public class Reservee {
 	@NotNull(message="Last Name cannot be null.")
 	@Column
 	private String lastName;
+	
+	@NotNull(message="OBF email cannot be null.")
+	@Column
+	private String email;
 
 	public Long getReserveeID() {
 		return reserveeID;
@@ -73,9 +76,17 @@ public class Reservee {
 		this.lastName = lastName;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	@Override
 	public String toString() {
 		return "Reservee [reserveeID=" + reserveeID + ", schoolID=" + schoolID + ", type=" + type + ", firstName="
-				+ firstName + ", lastName=" + lastName + "]";
+				+ firstName + ", lastName=" + lastName + ", email=" + email + "]";
 	}
 }

@@ -31,10 +31,8 @@ public class ReservationComponent {
 		
 		// 1. Get Approved Reservations on the same Year, Month, Day, and Venue
 		List<Reservation> conflict = new ArrayList<>();
-		List<Reservation> possibleConflicts = reservationRepo.findByVenueIDYearMonthDay(res.getVenueID(), 
-																						res.getYear(),
-																						res.getMonth(),
-																						res.getDay());
+		List<Reservation> possibleConflicts = reservationRepo.findByVenueIDDAte(res.getVenueID(), 
+																				res.getDate());
 		
 		// 2. Check for time overlap
 		for(Reservation r : possibleConflicts) {
@@ -64,5 +62,9 @@ public class ReservationComponent {
 		reservation = reservationRepo.save(reservation);
 		
 		return "The reservation " + reservationID + " is currently " + status +".";
+	}
+
+	public List<Reservation> getRecentReservations() {
+		return reservationRepo.getRecentReservation();
 	}
 }

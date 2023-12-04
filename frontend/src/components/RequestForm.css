@@ -1,0 +1,178 @@
+.reserve-venue {
+    padding-top: 20vh;
+    margin: 0px 10%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 100px;
+}
+
+.reserve-venue .venue-table{
+    font-family: 'Montserrat';
+    border-spacing: 0px;
+    background-color: #e7e7e7;
+}
+
+.venue-table a {
+    color: #3920CD;
+}
+
+.venue-table a .venue-name {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.venue-table .venue-type, .venue-building{
+    text-transform: uppercase;
+    font-size: 11px;
+}
+
+.reservation-request-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+    max-width: 700px;
+}
+
+.reservation-request-form label {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Montserrat';
+    font-size: 14px;
+}
+
+.reservation-request-form input {
+    margin-top: 5px;
+    font-family: 'Montserrat';
+    padding: 10px;
+    border-width: 1px;
+    border-radius: 5px;
+    width: 400px;
+    font-size: 16px;
+}
+
+.reservation-request-form input:focus-visible {
+    outline:#3920CD solid 1px;
+    border-color: #3920CD;
+}
+
+.reservation-request-form .reservee-type div{
+    display: flex;
+    flex-direction: row;
+    width: 400px;
+    height: 2em;
+    align-items: center;
+}
+
+.reservation-request-form .reservee-type div input{
+    width: min-content;
+    margin-right: 5px;
+    margin-top: 0px;
+}
+
+.reservation-request-form .reservation-conflicts {
+    margin-top: 20px;
+    padding: 20px;
+    border: #3920CD solid 1px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.reservation-request-form .date-time {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    
+}
+
+.reservation-request-form .date-time .date{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+    gap: 15px;
+}
+
+.reservation-request-form .date-time .time{
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.reservation-request-form .date-time .time label{
+    display: flex;
+    flex-direction: column;
+}
+
+.reservation-request-form .date-time .time label div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.reservation-request-form .form-button-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.reservation-request-form .form-button {
+    background-color: #3920CD;
+    color: white;
+    font-family: 'Montserrat';
+    font-size: 16px;
+    padding: 10px;
+    border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 0px;
+    width: min-content;
+}
+
+.reservation-request-form .form-button:disabled {
+    background-color: darkgray;
+}
+
+#conflicts-message {
+    color: #3920CD;
+    font-weight: bold;
+}
+
+.conflicts-table, tbody {
+    font-family: 'Montserrat';
+    border-spacing: 0px;
+    border-collapse: collapse;
+}
+
+.conflicts-table tbody tr {
+    border: solid 1px lightgray;
+}
+
+.conflicts-table td {
+    text-align: left;
+    padding: 10px;
+}
+
+.conflicts-table tr:nth-child(odd) {
+    background-color: #e7e7e7;
+}
+
+.conflicts-table .reservation-details p.body{
+    text-align: left;
+    font-size: 12px;
+    color: darkgray;
+}
+
+.conflicts-table p.tag {
+    text-align: right;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+}

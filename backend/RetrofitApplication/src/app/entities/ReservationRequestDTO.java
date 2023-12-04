@@ -7,13 +7,11 @@ public class ReservationRequestDTO {
 	private String type;
 	private String firstName;
 	private String lastName;
-	private int year;
-	private int month;
-	private int day;
+	private String date;
 	private String timeStart;
 	private String timeEnd;
 	private String purpose;
-	
+	private String email;
 	public Long getVenueID() {
 		return venueID;
 	}
@@ -44,23 +42,11 @@ public class ReservationRequestDTO {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public int getYear() {
-		return year;
+	public String getDate() {
+		return date;
 	}
-	public void setYear(int year) {
-		this.year = year;
-	}
-	public int getMonth() {
-		return month;
-	}
-	public void setMonth(int month) {
-		this.month = month;
-	}
-	public int getDay() {
-		return day;
-	}
-	public void setDay(int day) {
-		this.day = day;
+	public void setDate(String date) {
+		this.date = date;
 	}
 	public String getTimeStart() {
 		return timeStart;
@@ -80,10 +66,16 @@ public class ReservationRequestDTO {
 	public void setPurpose(String purpose) {
 		this.purpose = purpose;
 	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	@Override
 	public String toString() {
 		return "ReservationRequestDTO [venueID=" + venueID + ", schoolID=" + schoolID + ", type=" + type
-				+ ", firstName=" + firstName + ", lastName=" + lastName + ", year=" + year + ", month=" + month
-				+ ", day=" + day + ", timeStart=" + timeStart + ", timeEnd=" + timeEnd + ", purpose=" + purpose + "]";
+				+ ", firstName=" + firstName + ", lastName=" + lastName + ", date=" + date + ", timeStart=" + timeStart
+				+ ", timeEnd=" + timeEnd + ", purpose=" + purpose + ", email=" + email + "]";
 	}
 }

@@ -1,0 +1,39 @@
+header {
+  position: fixed;
+  width: 100%;
+  background-color: #3920CD;
+  padding: 30px 100px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  max-height: 15vh;
+}
+  
+header .site-header-title {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+header .site-header-title .text {
+  height: min-content;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+header .site-header-title .text .title {
+  color: white;
+}
+
+header nav {
+  display: flex;
+  gap: 30px;
+  height: fit-content;
+}
+
+header nav p {
+  color: white;
+  text-transform: uppercase;
+  font-weight: 500s;
+}

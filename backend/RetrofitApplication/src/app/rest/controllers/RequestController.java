@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import app.components.RequestComponent;
 import app.entities.EquipmentRequest;
+import app.entities.Reservation;
 import app.entities.ReservationRequestDTO;
 
 @Path("/request")
@@ -22,7 +23,8 @@ public class RequestController {
 	@POST
 	@Path("/reservation")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public String requestReservation(ReservationRequestDTO resreq) throws Exception {
+	@Produces(MediaType.APPLICATION_JSON)
+	public Reservation requestReservation(ReservationRequestDTO resreq) throws Exception {
 		return rc.requestReservation(resreq);
 	}
 	

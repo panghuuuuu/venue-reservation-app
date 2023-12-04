@@ -1,15 +1,17 @@
 package app.entities;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 public class Reservation {
@@ -27,21 +29,13 @@ public class Reservation {
 	@Column
 	private Long venueID;
 	
-	@NotNull(message="Year cannot be null.")
+	@NotNull(message="Venue Name cannot be null.")
 	@Column
-	private int year;
+	private String venueName;
 	
-	@NotNull(message="Month cannot be null.")
+	@NotNull(message="Date cannot be null.")
 	@Column
-	@Min(1)
-	@Max(12)
-	private int month;
-	
-	@NotNull(message="Day cannot be null.")
-	@Column
-	@Min(1)
-	@Max(31)
-	private int day;
+	private String date;
 	
 	@NotNull(message="timeStart must be valid.")
 	@Column
@@ -85,28 +79,20 @@ public class Reservation {
 		this.venueID = venueID;
 	}
 
-	public int getYear() {
-		return year;
+	public String getVenueName() {
+		return venueName;
 	}
 
-	public void setYear(int year) {
-		this.year = year;
+	public void setVenueName(String venueName) {
+		this.venueName = venueName;
 	}
 
-	public int getMonth() {
-		return month;
+	public String getDate() {
+		return date;
 	}
 
-	public void setMonth(int month) {
-		this.month = month;
-	}
-
-	public int getDay() {
-		return day;
-	}
-
-	public void setDay(int day) {
-		this.day = day;
+	public void setDate(String date) {
+		this.date = date;
 	}
 
 	public String getTimeStart() {
@@ -144,7 +130,7 @@ public class Reservation {
 	@Override
 	public String toString() {
 		return "Reservation [reservationID=" + reservationID + ", reserveeID=" + reserveeID + ", venueID=" + venueID
-				+ ", year=" + year + ", month=" + month + ", day=" + day + ", timeStart=" + timeStart + ", timeEnd="
-				+ timeEnd + ", status=" + status + ", purpose=" + purpose + "]";
+				+ ", venueName=" + venueName + ", date=" + date + ", timeStart=" + timeStart + ", timeEnd=" + timeEnd
+				+ ", status=" + status + ", purpose=" + purpose + "]";
 	}
 }
