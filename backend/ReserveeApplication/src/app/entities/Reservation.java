@@ -1,5 +1,7 @@
 package app.entities;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,8 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Reservation {
@@ -31,7 +35,8 @@ public class Reservation {
 	
 	@NotNull(message="Date cannot be null.")
 	@Column
-	private String date;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate date;	
 	
 	@NotNull(message="timeStart must be valid.")
 	@Column
@@ -83,11 +88,11 @@ public class Reservation {
 		this.venueName = venueName;
 	}
 
-	public String getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(String date) {
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
 

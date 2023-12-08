@@ -39,7 +39,6 @@ public class RequestComponent {
 	public Reservation requestReservation(ReservationRequestDTO resreq) throws Exception {
 		
 		// 1.0 Get the Reservee instance
-		
 		Call<List<Reservee>> findReservee = service.findReservee(resreq.getSchoolID(),
 																 resreq.getType(),
 																 resreq.getFirstName(), 
@@ -68,7 +67,6 @@ public class RequestComponent {
 		venue = viewVenueReply.body();
 
 		// 3. Verify that the starting and end time is valid for the Venue
-		
 		LocalTime vStart = LocalTime.parse(venue.getTimeStart());
 		LocalTime vEnd = LocalTime.parse(venue.getTimeEnd());
 		LocalTime rStart = LocalTime.parse(resreq.getTimeStart());
