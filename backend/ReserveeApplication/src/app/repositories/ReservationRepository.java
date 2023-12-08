@@ -1,5 +1,6 @@
 package app.repositories;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,5 +21,5 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
 	
 	@Query("SELECT r FROM Reservation r WHERE r.venueID = :venueID AND r.date = :date")
 	public List<Reservation> findByVenueIDDAte(@Param("venueID") Long venueID, 
-											   @Param("date") String date);
+											   @Param("date") LocalDate date);
 }

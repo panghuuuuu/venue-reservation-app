@@ -5,7 +5,6 @@ import java.util.List;
 import app.entities.Equipment;
 import app.entities.EquipmentRequest;
 import app.entities.Reservation;
-import app.entities.ReservationRequestDTO;
 import app.entities.Reservee;
 import app.entities.Venue;
 import okhttp3.ResponseBody;
