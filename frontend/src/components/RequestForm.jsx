@@ -101,7 +101,6 @@ const RequestForm = () => {
         );
       });
 
-    // Prevent spamming of request button
     setTimeout(() => {
       setIsDisabled(false);
     }, 250);

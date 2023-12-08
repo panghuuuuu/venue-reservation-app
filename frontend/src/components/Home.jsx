@@ -14,6 +14,12 @@ function Home() {
         <a href="/equipments">Reserve Equipments</a>
         <a href="/reservations">View Reservations</a>
       </div>
+      <div className="admin">
+        <p>
+          Are you an Admin? Click <a href="/status">here</a> to set reservation
+          status.
+        </p>
+      </div>
     </section>
   );
 }
