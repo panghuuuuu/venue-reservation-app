@@ -1,0 +1,25 @@
+.summary {
+  height: 100vh;
+  width: 100vw;
+  background-image: url(../assets/hero-bg.jpg);
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  padding: 20vh 10%;
+}
+
+.success a {
+  background-color: #3920cd;
+  color: white;
+  font-family: "Montserrat";
+  font-size: 18px;
+  padding: 16px;
+  border: none;
+  text-transform: uppercase;
+  cursor: pointer;
+}
