@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 @Entity
 public class Reservee {
@@ -21,6 +22,7 @@ public class Reservee {
 
 	@Column
 	@NotNull(message="Type cannot be null.")
+	@Pattern(regexp = "^(student|faculty)$")
 	private String type;
 
 	@NotNull(message="First Name cannot be null.")
