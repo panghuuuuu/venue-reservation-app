@@ -1,0 +1,51 @@
+.reservee-signup{
+    padding-top: 20vh;
+    margin: 0px 10%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 100px;
+}
+
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    width: 100%;
+    max-width: 700px;
+  }
+  
+  .signup-form label {
+    display: flex;
+    flex-direction: column;
+    font-family: "Montserrat";
+    font-size: 14px;
+  }
+  
+  .signup-form input {
+    margin-top: 5px;
+    font-family: "Montserrat";
+    padding: 10px;
+    border-width: 1px;
+    border-radius: 5px;
+    width: 400px;
+    font-size: 16px;
+  }
+
+.form-button {
+    display: flex;
+    background-color: #3920cd;
+    color: white;
+    font-family: "Montserrat";
+    font-size: 16px;
+    width: 100px;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 0px;
+  }

@@ -10,6 +10,7 @@ function Home() {
         <span>CFMO Reservation Portal!</span>
       </h1>
       <div className="hero-buttons">
+      <a href="/office">Create an Office</a>
         <a href="/venues">View Venues</a>
         <a href="/equipments">Reserve Equipments</a>
         <a href="/reservations">View Reservations</a>
